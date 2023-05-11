@@ -91,3 +91,35 @@ INSERT INTO `facultate`.`student` (
                 'pol561@gmail.com',
                  '2023-04-01',
                   'admis');
+
+
+SELECT * FROM `studenti` WHERE year(data_nastere) BETWEEN '1993' AND '1995';
+ 
+SELECT * FROM `profesor` WHERE grad_didactic IN ('I', 'II');
+
+SELECT * FROM cursuri WHERE an = 2 AND semestru = 2;
+
+SELECT * FROM `student` WHERE prenume LIKE 'ion%';
+
+SELECT * FROM `student` WHERE DATE_FORMAT(data_nastere, '%m-%d') = '09-21';
+
+SELECT * FROM `student` WHERE bursa*12>=4000;
+
+SELECT * FROM `student` ORDER BY nume ASC;
+
+SELECT * FROM `student` ORDER BY rand() LIMIT 1;
+
+SELECT * FROM `student` ORDER BY data_nastere LIMIT 10, 5;
+
+SELECT c.id_curs, c.titlu_curs, n.valoare FROM `cursuri` AS c NATURAL JOIN;
+note AS n;
+
+SELECT * FROM cursuri AS c INNER JOIN note AS n ON c.id_curs= n.id_curs;
+
+SELECT * FROM `profesor` LEFT JOIN didactic ON profesor.id = didactic.id_prof WHERE profesor.id = 6;
+
+SELECT profesor.nume, profesor.prenume, cursuri.titlu_curs, note.valoare FROM `profesor` LEFT JOIN didactic ON profesor.id = didactic.id_prof WHERE profesor.id = 6;
+
+SELECT * FROM `note` AS n INNER JOIN student AS s ON n.id_student = s.id GROUP by n.id_student;
+
+SELECT  s.nume, s.prenume, n.valoare, AVG(n.valoare) FROM `student` AS s LEFT JOIN note AS n ON s.id = n.id_student WHERE s.id = 111 GROUP BY s.id;
